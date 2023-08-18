@@ -11,11 +11,12 @@ class Calculator:
 
         self.wind.title('Temperature Converter')
 
-        #Entry widget where the input and output will be shown
+        # Entry widget where the input and output will be shown
         self.ent = tk.Entry(self.wind, font=("Helvetica",16), justify='right', width=20)
         self.ent.insert(tk.END, '0') # Intial display on entry widget
         self.ent.grid(row=0,column=0, columnspan=4)
 
+        # Digit widgets 
         self.row = 1
         self.col = 0
         for i in "789456123":
@@ -26,7 +27,13 @@ class Calculator:
             self.btn.grid(row=self.row,column=self.col)
             self.col+=1
 
-
+        # Opertion Widgets 
+        self.row = 1
+        self.col += 1
+        for i in "÷x-+":
+            self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.click(d))
+            self.btn.grid(row=self.row,column=self.col)
+            self.row+=1
 
         self.ent.bind('<Key>', self.clear)
 
