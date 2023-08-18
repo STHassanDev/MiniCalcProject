@@ -26,14 +26,20 @@ class Calculator:
             self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.click(d))
             self.btn.grid(row=self.row,column=self.col)
             self.col+=1
+        self.btn = tk.Button(self.wind, text='0', width=10, height=3, command=lambda d=i: self.click(0))
+        self.btn.grid(row=4,column=1)
 
         # Opertion Widgets 
         self.row = 1
         self.col += 1
         for i in "÷x-+":
-            self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.click(d))
+            self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.operation(d))
             self.btn.grid(row=self.row,column=self.col)
             self.row+=1
+
+        # Equal sign widget 
+        self.btn = tk.Button(self.wind, text='=', width=10, height=3, command=lambda d=i: self.result(d))
+        self.btn.grid(row=self.row+1,column=self.col)
 
         self.ent.bind('<Key>', self.clear)
 
@@ -47,5 +53,8 @@ class Calculator:
         if self.ent.get() == "0":
             self.ent.delete(0, tk.END)
         self.ent.insert(tk.END, digit)
+
+    
+
 
 Go = Calculator()
