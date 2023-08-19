@@ -16,8 +16,12 @@ class Calculator:
         self.ent.insert(tk.END, '0') # Intial display on entry widget
         self.ent.grid(row=0,column=0, columnspan=4)
 
+        # Clear button widget 
+        self.btn = tk.Button(self.wind, text="Clear", font=(20),width=33, height=3, command = lambda:self.clear())
+        self.btn.grid(row=1, column=0, columnspan=4)
+
         # Digit widgets 
-        self.row = 1
+        self.row = 2
         self.col = 0
         for i in "789456123":
             if self.col>2:
@@ -26,26 +30,30 @@ class Calculator:
             self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.click(d))
             self.btn.grid(row=self.row,column=self.col)
             self.col+=1
-        self.btn = tk.Button(self.wind, text='0', width=10, height=3, command=lambda d=i: self.click(0))
-        self.btn.grid(row=4,column=1)
+        self.btn = tk.Button(self.wind, text='0', width=10, height=3, command = lambda: self.click('0'))
+        self.btn.grid(row=5,column=1)
 
+        '''# Sign change Widget
+        self.btn = tk.Button(self.wind, text='+/-', width=10, height=3, command=self.negate())
+        self.btn.grid(row=4, column=0)
+        '''
         # Opertion Widgets 
         self.row = 1
         self.col += 1
         for i in "÷x-+":
-            self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.operation(d))
+            self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.click(d))
             self.btn.grid(row=self.row,column=self.col)
             self.row+=1
 
         # Equal sign widget 
-        self.btn = tk.Button(self.wind, text='=', width=10, height=3, command=lambda d=i: self.result(d))
-        self.btn.grid(row=self.row+1,column=self.col)
+        self.btn = tk.Button(self.wind, text='=', width=10, height=3, command = lambda: self.result())
+        self.btn.grid(row=self.row,column=self.col)
 
         self.ent.bind('<Key>', self.clear)
 
         self.wind.mainloop()
 
-    def clear(self, event):
+    def clear(self):
         if self.ent.get() == "0":
             self.ent.delete(0, tk.END)
 
@@ -53,8 +61,14 @@ class Calculator:
         if self.ent.get() == "0":
             self.ent.delete(0, tk.END)
         self.ent.insert(tk.END, digit)
+        print(self.ent.get())
 
-    
+    '''def negate(self):
+        digit = self.ent.get()
+        self.ent.insert(tk.END, )
+    '''
+    def result(self):
+        print(eval(self.ent.get()))
 
 
 Go = Calculator()
