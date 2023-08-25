@@ -35,7 +35,7 @@ class Calculator:
 
         # Sign change Widget
         self.btn = tk.Button(self.wind, text='+/-', width=10, height=3, command = lambda: self.sign_change())
-        self.btn.grid(row=4, column=0)
+        self.btn.grid(row=5, column=0)
         
         # Opertion Widgets 
         self.row = 1
@@ -61,7 +61,6 @@ class Calculator:
         if self.ent.get() == ("0" or "-0"):
             self.ent.delete(0, tk.END)
         self.ent.insert(tk.END, digit)
-        print(self.ent.get())
 
     def sign_change(self):
         self.clear
