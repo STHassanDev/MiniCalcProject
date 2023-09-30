@@ -17,7 +17,7 @@ class Calculator:
         self.ent.grid(row=0,column=0, columnspan=4)
 
         # Clear button widget 
-        self.btn = tk.Button(self.wind, text="Clear", font=(20),width=33, height=3, command = lambda:self.clear())
+        self.btn = tk.Button(self.wind, text="Clear", font=(20),width=30, height=3, command = lambda:self.clear())
         self.btn.grid(row=1, column=0, columnspan=4)
 
         # Digit widgets 
@@ -54,8 +54,7 @@ class Calculator:
         self.wind.mainloop()
 
     def clear(self):
-        if self.ent.get() == "0":
-            self.ent.delete(0, tk.END)
+        self.ent.delete(0, tk.END)
 
     def click(self, digit):
         if self.ent.get() == ("0" or "-0"):
