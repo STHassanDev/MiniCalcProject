@@ -5,20 +5,18 @@ class Calculator:
         
         self.wind = tk.Tk()
 
-        self.wind.geometry("600x600")
-
         self.wind.config(bg='#E0FFFF')
 
         self.wind.title('Temperature Converter')
 
         # Entry widget where the input and output will be shown
-        self.ent = tk.Entry(self.wind, font=("Helvetica",16), justify='right', width=20)
+        self.ent = tk.Entry(self.wind, font=("Times New Roman",26), justify='right', width=20)
         self.ent.insert(tk.END, '0') # Intial display on entry widget
-        self.ent.grid(row=0,column=0, columnspan=4)
+        self.ent.grid(row=0,column=0,columnspan=5)
 
         # Clear button widget 
-        self.btn = tk.Button(self.wind, text="Clear", font=(20),width=30, height=3, command = lambda:self.clear())
-        self.btn.grid(row=1, column=0, columnspan=4)
+        self.btn = tk.Button(self.wind, text="Clear", font=(65),width=30, height=3, command = lambda:self.clear())
+        self.btn.grid(row=1, column=0, columnspan=5)
 
         # Digit widgets 
         self.row = 2
@@ -33,21 +31,22 @@ class Calculator:
         self.btn = tk.Button(self.wind, text='0', width=10, height=3, command = lambda: self.click('0'))
         self.btn.grid(row=5,column=1)
 
+        # Equal sign widget 
+        self.btn = tk.Button(self.wind, text='=', width=10, height=3, command = lambda: self.result())
+        self.btn.grid(row=self.row+1,column=2)
+
         # Sign change Widget
         self.btn = tk.Button(self.wind, text='+/-', width=10, height=3, command = lambda: self.sign_change())
         self.btn.grid(row=5, column=0)
         
         # Opertion Widgets 
-        self.row = 1
+        self.row = 2
         self.col += 1
         for i in "÷x-+":
             self.btn = tk.Button(self.wind, text=i, width=10, height=3, command=lambda d=i: self.click(d))
             self.btn.grid(row=self.row,column=self.col)
             self.row+=1
 
-        # Equal sign widget 
-        self.btn = tk.Button(self.wind, text='=', width=10, height=3, command = lambda: self.result())
-        self.btn.grid(row=self.row,column=self.col)
 
         self.ent.bind('<Key>', self.clear)
 
@@ -55,6 +54,7 @@ class Calculator:
 
     def clear(self):
         self.ent.delete(0, tk.END)
+        self.ent.insert(tk.END, '0')
 
     def click(self, digit):
         if self.ent.get() == ("0" or "-0"):
