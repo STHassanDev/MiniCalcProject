@@ -91,7 +91,8 @@ class Calculator:
 
     
     def result(self):
-        print(eval(self.ent.get().replace('÷','/')))
+        ans = self.ent.get().replace('x','*')
+        print(eval(ans.replace('÷','/')))
 
 
 Go = Calculator()
